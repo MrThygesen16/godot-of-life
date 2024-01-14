@@ -6,3 +6,41 @@
 
 [node name="Grid" type="Node2D" parent="."]
 script = ExtResource("1_8l0sx")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StateLabelHolder" type="Panel" parent="CanvasLayer"]
+offset_left = 10.0
+offset_right = 126.0
+offset_bottom = 24.0
+
+[node name="StateLabel" type="Label" parent="CanvasLayer/StateLabelHolder"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GenerationLabelHolder" type="Panel" parent="CanvasLayer"]
+offset_left = 130.0
+offset_right = 246.0
+offset_bottom = 24.0
+
+[node name="GenerationLabel" type="Label" parent="CanvasLayer/GenerationLabelHolder"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gen: 0"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -10,11 +10,25 @@ const cell_size = 20.0
 const size = Vector2(cell_size, cell_size)
 
 const start_point_x = 10
-const start_point_y = 10
+const start_point_y = 25
+
+var gen_num = 0
 
 var alive_array = []
 
 var running = false
+
+@onready var generation_label = %GenerationLabel
+@onready var state_label = %StateLabel
+
+func update_state():
+	if running:
+		state_label.text = "Running"
+	else:
+		state_label.text = "Paused"
+
+func update_gen_num():
+	generation_label.text = "Gen: " + str(gen_num)
 
 func _ready():
 	for i in range(0, num_columns):
@@ -57,7 +71,11 @@ func game_of_life():
 			else:
 				if num_neighbours == 3:
 					alive_array[row][col] = true
+	gen_num += 1
+	update_gen_num()
+
 	queue_redraw()
+	
 
 
 func count_neighbours(arr_copy, row, col):
@@ -107,10 +125,13 @@ func count_neighbours(arr_copy, row, col):
 func _process(delta):
 	if Input.is_action_just_pressed("space_bar"):
 		running = !running
+		update_state()
 	
 	if Input.is_action_just_pressed("reset"):
 		running = false
+		update_state()
 		reset_grid()
+		
 		
 	if running:
 		gol_timer += delta
@@ -125,6 +146,8 @@ func reset_grid():
 		for col in range(0, num_rows):
 			alive_array[row][col] = false
 	
+	gen_num = 0
+	update_gen_num()
 	queue_redraw()
 	
 	
